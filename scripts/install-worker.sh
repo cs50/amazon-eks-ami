@@ -129,12 +129,6 @@ fi
 sudo sed -i 's/\(GRUB_CMDLINE_LINUX_DEFAULT=\)"\(.*\)"/\1"\2 rootflags=uquota,pquota"/' /etc/default/grub
 sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 
-# Install jq
-sudo yum install -y jq
-
-# Update docker configuration
-jq -s add /etc/docker/daemon.json <(echo '{"storage-opts": ["overlay2.size=1G"]}') | sudo tee /etc/docker/daemon.json
-
 ################################################################################
 ### Logrotate ##################################################################
 ################################################################################
